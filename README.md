@@ -17,7 +17,7 @@
 | 항목 | 내용 |
 |---|---|
 | 기간 / 팀 | 2025년 3월 ~ 6월 / S.P.I.N (4명, 팀장) |
-| 내 역할 | 하드웨어 구축(모터 선정, 링 기어 도면 제작·3D 프린팅), 디자인·기능 설계, 재료 탐색·구매, 아두이노 코드 일부 작성, 논문 제1저자(서론·관련 연구 작성) |
+| 내 역할 | 하드웨어 구축(모터 선정, 링 기어 도면 제작·3D 프린팅), 디자인·기능 설계, 재료 탐색·구매, 아두이노 코드 일부 작성, 논문 집필(서론·관련 연구 조사 및 작성) |
 | 논문 | 「실내 식물 성장을 위한 자동 회전 기반 스마트 화분 연구」, 스마트미디어저널 14(11), 2025.11, KCI 등재 · [KCI](https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART003266230) · [DOI](https://doi.org/10.30693/SMJ.2025.14.11.158) |
 | 사용 기술 | Arduino C++, 조도 센서, DHT11, 토양 습도 센서, HM-10(BLE), L298N 모터 드라이버, DC 모터, 3D 프린팅 (앱: Flutter) |
 
@@ -55,6 +55,8 @@ flowchart TD
 | 앱 → 아두이노 | `MODE:AUTO` / `MODE:MANUAL` | 자동 / 사용자 모드 전환 |
 | 앱 → 아두이노 | `DIR:N` `DIR:E` `DIR:S` `DIR:W` | 원하는 방향으로 회전 |
 | 아두이노 → 앱 | `temp:26.9,humid:71.0,soil:7` | 온도(℃), 습도(%), 토양 습도(%) |
+
+펌웨어에는 개발 중 쓰던 회전 속도 설정 명령(`SPD:0`~`SPD:100`)도 남아 있지만, 최종 앱에서는 방향 선택만 사용합니다.
 
 ### 스마트폰 앱
 
@@ -121,7 +123,7 @@ docs/
 
 ## 실행해 보기
 
-1. Arduino IDE 라이브러리 관리자에서 **DHT sensor library** (Adafruit)를 설치합니다.
+1. Arduino IDE 라이브러리 관리자에서 **DHT sensor library** (Adafruit)와 함께 필요한 **Adafruit Unified Sensor** 를 설치합니다.
 2. 위 핀 표대로 배선하고 `firmware/smart_pot/smart_pot.ino` 를 업로드합니다.
 3. HM-10 에 블루투스로 연결할 수 있는 앱에서 `MODE:MANUAL`, `DIR:E` 같은 명령을 보내 동작을 확인합니다. 시리얼 모니터(9600)에서 센서 값과 회전 로그를 볼 수 있습니다.
 4. 조도 센서만 먼저 확인하려면 `firmware/tools/ldr_test` 를 사용하세요.
